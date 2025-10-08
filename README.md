@@ -39,7 +39,7 @@ A complete e-commerce backend API built with Node.js, Express, MongoDB, featurin
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/vexa-ecommerce-backend.git
+   git clone https://github.com/Apurv3027/vexa-e-commerce-backend.git
    cd vexa-ecommerce-backend
    ```
 
