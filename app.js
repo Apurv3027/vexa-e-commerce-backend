@@ -7,6 +7,7 @@ require('dotenv').config();
 // Import Routes
 const authRoutes = require("./routes/authRoutes");
 const categoryRoutes = require("./routes/categoryRoutes");
+const productRoutes = require("./routes/productRoutes");
 
 const app = express();
 
@@ -18,9 +19,13 @@ app.use(cors());
 // Connect to database
 connectDB();
 
+// Static folder for image uploads
+app.use('/products/uploads', express.static('uploads/products'));
+
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/categories", categoryRoutes);
+app.use("/api/products", productRoutes);
 
 // Home screen route
 app.get('/', (req, res) => {
