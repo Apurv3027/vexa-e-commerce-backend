@@ -21,7 +21,10 @@ exports.sendOtp = async (req, res) => {
         const otpCode = generateOTP();
 
         // Save OTP to DB (valid for 5 minutes)
-        await Otp.create({ phoneNumber, otp: otpCode });
+        await Otp.create({
+            phoneNumber: phoneNumber,
+            otp: otpCode,
+        });
 
         // Send SMS via Twilio
         await client.messages.create({
@@ -30,7 +33,7 @@ exports.sendOtp = async (req, res) => {
             to: phoneNumber,
         });
 
-        res.json({ message: "OTP sent successfully" });
+        res.status(200).json({ message: "OTP sent successfully" });
     } catch (error) {
         console.error("Error sending OTP:", error);
         res.status(500).json({ message: "Failed to send OTP", error: error.message });
@@ -46,7 +49,10 @@ exports.verifyOtp = async (req, res) => {
             return res.status(400).json({ message: "Phone number and OTP required" });
         }
 
-        const otpRecord = await Otp.findOne({ phoneNumber, otp });
+        const otpRecord = await Otp.findOne({ 
+            phoneNumber: phoneNumber, 
+            otp: otp 
+        });
         if (!otpRecord) {
             return res.status(400).json({ message: "Invalid or expired OTP" });
         }
@@ -65,9 +71,11 @@ exports.verifyOtp = async (req, res) => {
         );
 
         // Delete OTP after verification
-        await Otp.deleteMany({ phoneNumber });
+        await Otp.deleteMany({ 
+            phoneNumber: phoneNumber 
+        });
 
-        res.json({
+        res.status(200).json({
             message: "Login successful",
             user,
             token,
