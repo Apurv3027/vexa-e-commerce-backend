@@ -18,7 +18,8 @@ const upload = multer({
 });
 
 // Create a new product
-router.post('/', upload.single('image'), productController.createProduct);
+router.post('/', productController.createProduct);
+// router.post('/', upload.single('image'), productController.createProduct);
 
 // Get all products
 router.get('/', productController.getAllProducts);
@@ -27,7 +28,8 @@ router.get('/', productController.getAllProducts);
 router.get('/:id', productController.getProductById);
 
 // Update a product by ID
-router.put('/:id', upload.single('image'), productController.updateProduct);
+router.put('/:id', productController.updateProduct);
+// router.put('/:id', upload.single('image'), productController.updateProduct);
 
 // Delete a product by ID
 router.delete('/:id', productController.deleteProduct);

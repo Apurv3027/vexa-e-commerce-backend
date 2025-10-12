@@ -15,7 +15,10 @@ exports.sendOtp = async (req, res) => {
     try {
         const { phoneNumber } = req.body;
         if (!phoneNumber) {
-            return res.status(400).json({ message: "Phone number required" });
+            return res.status(400).json({
+                status: 400,
+                message: "Phone number required"
+            });
         }
 
         const otpCode = generateOTP();
@@ -33,10 +36,16 @@ exports.sendOtp = async (req, res) => {
             to: phoneNumber,
         });
 
-        res.status(200).json({ message: "OTP sent successfully" });
+        res.status(200).json({
+            status: 200,
+            message: "OTP sent successfully"
+        });
     } catch (error) {
         console.error("Error sending OTP:", error);
-        res.status(500).json({ message: "Failed to send OTP", error: error.message });
+        res.status(500).json({
+            status: 500,
+            message: "Failed to send OTP", error: error.message
+        });
     }
 };
 
@@ -46,7 +55,10 @@ exports.verifyOtp = async (req, res) => {
         const { phoneNumber, otp } = req.body;
 
         if (!phoneNumber || !otp) {
-            return res.status(400).json({ message: "Phone number and OTP required" });
+            return res.status(400).json({
+                status: 400,
+                message: "Phone number and OTP required"
+            });
         }
 
         const otpRecord = await Otp.findOne({ 
@@ -54,7 +66,10 @@ exports.verifyOtp = async (req, res) => {
             otp: otp 
         });
         if (!otpRecord) {
-            return res.status(400).json({ message: "Invalid or expired OTP" });
+            return res.status(400).json({
+                status: 400,
+                message: "Invalid or expired OTP"
+            });
         }
 
         // OTP verified — create or find user
@@ -76,12 +91,16 @@ exports.verifyOtp = async (req, res) => {
         });
 
         res.status(200).json({
+            status: 200,
             message: "Login successful",
             user,
             token,
         });
     } catch (error) {
         console.error("Error verifying OTP:", error);
-        res.status(500).json({ message: "Failed to verify OTP", error: error.message });
+        res.status(500).json({
+            status: 500,
+            message: "Failed to verify OTP", error: error.message
+        });
     }
 };

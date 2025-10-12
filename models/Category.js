@@ -11,6 +11,10 @@ const CategorySchema = new mongoose.Schema({
         type: String,
         trim: true,
     },
+    product_count: {
+        type: Number,
+        default: 0,
+    },
     createdAt: { 
         type: Date, 
         default: Date.now 
