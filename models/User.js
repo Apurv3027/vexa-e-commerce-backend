@@ -1,14 +1,26 @@
 const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
-    phoneNumber: { 
-        type: String, 
-        required: true, 
-        unique: true 
+    phoneNumber: {
+        type: String,
+        unique: true,
+        sparse: true,
     },
-    createdAt: { 
-        type: Date, 
-        default: Date.now 
+    googleId: {
+        type: String,
+        unique: true,
+        sparse: true,
+    },
+    name: String,
+    email: {
+        type: String,
+        unique: true,
+        sparse: true,
+    },
+    picture: String,
+    createdAt: {
+        type: Date,
+        default: Date.now,
     },
 }, {
     versionKey: false,
