@@ -52,41 +52,27 @@ A complete e-commerce backend API built with Node.js, Express, MongoDB, featurin
    Create a `.env` file in the root directory:
    ```env
    # Server Configuration
-   NODE_ENV=development
-   PORT=5000
-   CLIENT_URL=http://localhost:3000
+   PORT="5000"
+   NODE_ENV="Development"
 
-   # Database
-   MONGODB_URI=mongodb://localhost:27017/vexa-ecommerce
-   REDIS_URL=redis://localhost:6379
+   # MongoDB Atlas Cluster Connection
+   MONGODB_ATLAS_URI="your-mongodb-atlas-uri"
 
-   # JWT Secrets
-   JWT_SECRET=your-jwt-secret-key
-   JWT_REFRESH_SECRET=your-refresh-token-secret
-   JWT_EXPIRES_IN=1d
-   JWT_REFRESH_EXPIRES_IN=7d
+   # Twilio Credentials
+   TWILIO_ACCOUNT_SID="your-twilio-account-sid"
+   TWILIO_AUTH_TOKEN="your-twilio-auth-token"
+   TWILIO_PHONE_NUMBER="your-twilio-phone"
+   TWILIO_SERVICE_SID="your-twilio-service-sid"
 
-   # OAuth Configuration
+   # JWT Configuration
+   JWT_REFRESH_SECRET="your-refresh-token-secret"
+   JWT_EXPIRES_IN="7d"
+
+   # Google OAuth Configuration
    GOOGLE_CLIENT_ID=your-google-client-id
    GOOGLE_CLIENT_SECRET=your-google-client-secret
 
-   # SMS Service (Twilio)
-   TWILIO_ACCOUNT_SID=your-twilio-account-sid
-   TWILIO_AUTH_TOKEN=your-twilio-auth-token
-   TWILIO_PHONE_NUMBER=your-twilio-phone
-
-   # Email Service
-   EMAIL_SERVICE=gmail
-   EMAIL_USERNAME=your-email@gmail.com
-   EMAIL_PASSWORD=your-app-password
-
-   # Cloudinary
-   CLOUDINARY_CLOUD_NAME=your-cloud-name
-   CLOUDINARY_API_KEY=your-api-key
-   CLOUDINARY_API_SECRET=your-api-secret
-
-   # Payment Gateways
-   STRIPE_SECRET_KEY=your-stripe-secret-key
+   # Razorpay Payment Integration
    RAZORPAY_KEY_ID=your-razorpay-key-id
    RAZORPAY_KEY_SECRET=your-razorpay-secret
    ```
